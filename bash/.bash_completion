@@ -1,5 +1,5 @@
 #!/bin/bash
-COMPLETION_DIR=~/Documents/enviromentConfigs/bash/completions
+COMPLETION_DIR=$ENV_CONF_HOME/bash/completions
 
 if [ -d $COMPLETION_DIR ]; then
     for file in $(ls $COMPLETION_DIR); do
