@@ -80,3 +80,4 @@
 
 ;; config emacs-htmlize
 (add-to-list 'load-path (expand-file-name "site-lisp/emacs-htmlize" user-emacs-directory))
+(put 'upcase-region 'disabled nil)
