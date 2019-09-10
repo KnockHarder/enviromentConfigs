@@ -11,16 +11,25 @@ _proxychains() {
 	    for path in ${path_all[*]}; do
     		command_all=${command_all[*]}\ $( ls $path )
 	    done
+	    COMPREPLY=( $(compgen -W "$command_all" $cur))
 	    ;;
 	2)
 	    pre_word=${COMP_WORDS[1]}
-	    if [ $pre_word == "git" ]; then
-    		command_all="fetch pull push"
-	    else
-		if [ $pre_word == "ssh" ]; then
-		    command_all="wangzhiqiang@172.16.192.199"
-		fi
-	    fi
+	    case $pre_word in
+		"git")
+		    COMPREPLY=( $(compgen -W "fetch pull push" $cur))
+		    ;;
+		"ssh")
+		    COMPREPLY=( $(compgen -W "wangzhiqiang@172.16.192.199" $cur))
+		    ;;
+		"mvn")
+		    _mvn
+		    ;;
+		*)
+		    COMPREPLY=()
+		    return 0
+		    ;;
+	    esac
 	    ;;
 	*)
 	    COMPREPLY=()
@@ -28,7 +37,6 @@ _proxychains() {
 	    ;;
 	
     esac
-    COMPREPLY=( $(compgen -W "$command_all" $cur))
 }
 
 complete -F _proxychains proxychains4
