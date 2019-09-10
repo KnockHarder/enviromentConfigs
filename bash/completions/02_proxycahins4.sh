@@ -13,9 +13,9 @@ _proxychains() {
 	    done
 	    COMPREPLY=( $(compgen -W "$command_all" $cur))
 	    ;;
-	2)
-	    pre_word=${COMP_WORDS[1]}
-	    case $pre_word in
+	*)
+	    rel_cmd=${COMP_WORDS[1]}
+	    case $rel_cmd in
 		"git")
 		    COMPREPLY=( $(compgen -W "fetch pull push" $cur))
 		    ;;
@@ -23,7 +23,10 @@ _proxychains() {
 		    COMPREPLY=( $(compgen -W "wangzhiqiang@172.16.192.199" $cur))
 		    ;;
 		"mvn")
+		    (( COMP_CWORD --))
+		    COMP_WORDS=( ${COMP_WORDS[@]:1} )
 		    _mvn
+		    return 0
 		    ;;
 		*)
 		    COMPREPLY=()
@@ -31,11 +34,6 @@ _proxychains() {
 		    ;;
 	    esac
 	    ;;
-	*)
-	    COMPREPLY=()
-	    return 0
-	    ;;
-	
     esac
 }
 
