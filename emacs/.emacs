@@ -13,6 +13,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(cnblogs-blog-id "channingwong")
+ '(cnblogs-server-url
+   "http://www.cnblogs.com/channingwong/services/metaweblog.aspx")
+ '(cnblogs-user-name "CWong")
+ '(cnblogs-user-passwd "AVjs94@JF")
  '(column-number-mode t)
  '(custom-enabled-themes (quote (tsdh-dark)))
  '(default-input-method "eim-wb")
@@ -82,3 +87,8 @@
 (add-to-list 'load-path (expand-file-name "site-lisp/emacs-htmlize" user-emacs-directory))
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+;; config cnblogs
+(add-to-list 'load-path (expand-file-name "site-lisp/cnblogs" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "site-lisp/xml-rpc-el" user-emacs-directory))
+(require 'cnblogs)
