@@ -9,6 +9,7 @@ alias rm_empty_file='find . -maxdepth 1 -type f -empty | xargs rm'
 
 # git
 alias cd_git_root='cd $(git rev-parse --show-toplevel)'
+alias git_year_log='git log --author=$USER --all --graph --since="Jan 1 $(date +%Y)"'
 
 # format
 alias sed_camel_case='sed -r "s/([A-Z]+)/\L\1\E/g;s/(^|\s)([a-z]+)_/ /g;s/_(\w)/\U\1\E/g"'
