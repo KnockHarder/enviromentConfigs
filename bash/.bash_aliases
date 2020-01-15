@@ -22,4 +22,4 @@ alias iconv_gbk='iconv -f gbk -t utf8'
 # other
 alias upper_uuid='cat /proc/sys/kernel/random/uuid | sed s/-//g | tr "a-z" "A-Z"'
 alias date_ymd='date +%Y-%m-%d'
-
+alias ll='ls -l -t --color=always'
