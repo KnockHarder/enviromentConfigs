@@ -19,7 +19,11 @@ alias tr_upper='tr [a-z] [A-Z]'
 alias unzip_936='unzip -O cp936'
 alias iconv_gbk='iconv -f gbk -t utf8'
 
+# media
+alias gs_jpeg='gs -dSAFER -dBATCH -dNOPAUSE -r250 -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sDEVICE=jpeg'
+
 # other
 alias upper_uuid='cat /proc/sys/kernel/random/uuid | sed s/-//g | tr "a-z" "A-Z"'
 alias date_ymd='date +%Y-%m-%d'
-alias ll='ls -l -t --color=always'
+alias ll='ls -l -t -h --color=always'
+alias awk_pid='awk '\''{print $2}'\'

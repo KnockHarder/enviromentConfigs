@@ -80,7 +80,7 @@
 (add-hook 'sh-mode-hook
 	  (lambda ()
 	    (set (make-local-variable 'company-backends)
-		  '(company-capf company-shell-env company-dabbrev company-files))))
+		 '(company-capf company-shell-env company-dabbrev company-files))))
 (setq company-dabbrev-downcase nil)					  
 
 ;; config emacs-htmlize
@@ -92,3 +92,4 @@
 (add-to-list 'load-path (expand-file-name "site-lisp/cnblogs" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "site-lisp/xml-rpc-el" user-emacs-directory))
 (require 'cnblogs)
+
