@@ -1,7 +1,7 @@
 #!/bin/bash
 # command
 alias vi=vim
-alias dirs='dirs -p'
+alias dirs='dirs -p | nl'
 
 # find
 alias find_file='find . -type f -name'
