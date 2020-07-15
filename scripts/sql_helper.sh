@@ -16,7 +16,8 @@ for (( i=0; i < $#; i ++ )); do
     set_item_sql=${set_item_sql}${column}=${item}," "
 done
 
-echo "==========================="
+echo "++++++++++++ commons +++++++"
+
 echo \(\ ${column_sql:0:-2}\ \)
 echo
 echo \(\ ${values_sql:0:-2}\ \)
@@ -29,3 +30,4 @@ echo \(\ ${items_sql:0:-2}\ \)
 echo
 echo ${set_item_sql:0:-2}
     
+echo "+++++++++++++ sqls ++++++++++++"
