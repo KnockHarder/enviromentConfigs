@@ -19,9 +19,6 @@ _proxychains() {
 		"git")
 		    COMPREPLY=( $(compgen -W "fetch pull push" $cur))
 		    ;;
-		"ssh")
-		    COMPREPLY=( $(compgen -W "wangzhiqiang@172.16.192.199" $cur))
-		    ;;
 		"mvn")
 		    (( COMP_CWORD --))
 		    COMP_WORDS=( ${COMP_WORDS[@]:1} )

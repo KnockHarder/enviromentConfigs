@@ -48,6 +48,7 @@
   "vim-markdown
   " Plugin markdown
   Plugin 'plasticboy/vim-markdown'
+  Plugin 'jszakmeister/markdown2ctags'
   "vim-signature
   Plugin 'kshenoy/vim-signature'
 
@@ -68,10 +69,13 @@
   " Put your non-Plugin stuff after this line
 
 " Options and switches
+  set nocompatible
+
   " Format
     set fileencoding=utf-8
     set encoding=utf-8
     set backspace=2
+  " indent
     set expandtab
     set tabstop=4
     set shiftwidth=4
@@ -79,16 +83,24 @@
     set ai
     set wrap
     filetype indent on
+
+    autocmd FileType vim,markdown set tabstop=2
+    autocmd FileType vim,markdown set shiftwidth=2
+    autocmd FileType vim,markdown set softtabstop=2
   " display
     set nu
     set nowrap
     syntax on
-  " highlight
+  " search
     set hls
     set cursorline
     set cursorcolumn
+    set ignorecase
   " flod
-    set foldmethod=indent
+    set foldmethod=syntax
+    set foldlevelstart=99
+  " clip board
+    set clipboard=unnamed
   " cmd
   autocmd BufWritePost $MYVIMRC source $MYVIMRC
   autocmd VimEnter * TagbarToggle
@@ -96,9 +108,9 @@
 " ColorMap_Solarized
   syntax enable
   if has( 'gui_running' )
-          set background=dark
+          set background=light
   else
-          set background=dark
+          set background=light
   endif
   colorscheme solarized
   let g:solarized_termcolors=  256
@@ -175,7 +187,7 @@
   " Add support for markdown files in tagbar.
   let g:tagbar_type_markdown = {
       \ 'ctagstype': 'markdown',
-      \ 'ctagsbin' : '/home/channing/.vim/markdown2ctags/markdown2ctags.py',
+      \ 'ctagsbin' : '$HOME/.vim/bundle/markdown2ctags/markdown2ctags.py',
       \ 'ctagsargs' : '-f - --sort=yes --sro=»',
       \ 'kinds' : [
           \ 's:sections',
