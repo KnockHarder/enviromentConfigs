@@ -1,0 +1,79 @@
+#!/bin/bash
+
+if ! declare -F _search_history
+then
+    source $(dirname $0)/_history_option
+fi
+
+function _is_number() {
+    echo $1 | grep -E '^[0-9]+$' > /dev/null
+    echo $?
+}
+
+function _search_and_select_name() {
+    local argLine=$@
+    local isNumber=1
+    while [ $isNumber -ne 0 ]
+    do
+        local params=( $argLine )
+        local key=${params[0]}
+        local names
+
+        if [ $key = "-h" ]
+        then
+            names=( $(_search_history ${params[@]:1}) )
+        else
+            local search_result=$( _search $key )
+            if [ ${#params[@]} -gt 1 ]
+            then
+                names=( $( _names_from_json "$search_result" | _grep_all ${params[@]:1} ) )
+            else
+                names=( $( _names_from_json "$search_result" ) )
+            fi
+        fi
+
+
+        local names_size=${#names[@]}
+        if [ $names_size -lt 1 ]
+        then
+            echo "Not Found" > /dev/tty
+        else
+            if [ $names_size -eq 1 ]
+            then
+                if [ "$names" = "null" ] || [ "$names" = "" ]
+                then
+                    echo "Not Found" >/dev/tty
+                else
+                    _search $names
+                    echo $names
+                    _insert_history $names
+                    return 0
+                fi
+            fi
+        fi
+
+        for i in "${!names[@]}"
+        do
+            printf "%s\t%s\n" $i ${names[$i]} > /dev/tty
+        done
+        printf "Type number or new keyword: " >/dev/tty
+
+        read argLine
+        isNumber=$( _is_number $argLine )
+        while [ $isNumber -eq 0 ]
+        do
+            if [ $argLine -gt $names_size ]
+            then
+                printf "Number not in Rage. Retry: " >/dev/tty
+                read l
+                [[ $l =~ '^[0-9]+$' ]]
+                isNumber=$?
+            else
+                _search ${names[$argLine]}
+                echo ${names[$argLine]}
+                _insert_history ${names[$argLine]}
+                return 0
+            fi
+        done
+    done
+}

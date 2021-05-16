@@ -1,0 +1,15 @@
+#!/bin/bash
+
+gist="https://gist.github.com/KnockHarder"
+myBookNotes="https://github.com/KnockHarder/myBookNotes"
+
+if [ $# -lt 1 ]
+then
+    echo "Usage: $0 PARAMS..."
+    exit 1
+fi
+
+v=$( echo $@ | sed -e 's/ /_/g' )
+echo $v
+
+open -a "Google Chrome" ${!v}

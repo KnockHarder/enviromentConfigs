@@ -6,6 +6,9 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit
 fi
+setopt globdots
+setopt complete_in_word
+
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -109,8 +112,6 @@ source $ZSH/oh-my-zsh.sh
 alias dirs='dirs -v'
 alias ls='ls --color=always'
 alias pgit='git -P'
-alias to-dash-case='echo $camelcase_input  | sed -E -e "s/([a-z])([A-Z])/\1-\2/g" | tr "[:upper:]" "[:lower:]"'
-. $HOME/.zshSpecial
 alias fast_package='mvn -T 100 -Denforcer.skip=true -Dcheckstyle.skip=true -Dmaven.compiler.useIncrementalCompilation=false -Dmaven.test.skip=true compile package'
 
 # environment
@@ -119,3 +120,8 @@ export PATH=$PATH:$HOME/bin
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/Cellar/rename/1.601/bin:$PATH"
+
+. $HOME/.zshSpecial
+. $HOME/.bash_completion
+
+export PATH=$HOME/bin/override:$PATH

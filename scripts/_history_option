@@ -1,0 +1,38 @@
+#!/bin/bash
+
+
+history_dir=$HOME/.sh_search_history
+if ! [ -e $history_dir ]
+then
+    mkdir $history_dir
+fi
+
+if ! [ -d $history_dir ]
+then
+    echo "ERROR: $history_dir is not dir!"
+    exit 1
+fi
+
+prog_name=${0##*/}
+history_file=$history_dir/$prog_name
+if ! [ -e $history_file ]
+then
+    touch $history_file
+fi
+
+function _search_history() {
+    tac $history_file | _grep_all $@
+}
+
+function _insert_history() {
+    local MAX_LINES=10000
+    sed -i'' -e "/^${@}\$/d" $history_file
+    echo $@ >> $history_file
+    local size=$(wc -l $history_file | cut -d' ' -f1)
+    local size_execced=$( expr $size - $MAX_LINES )
+
+    if [ $size_execced -gt 0 ]
+    then
+        sed -i'' -e "1,${size_execced}d" $history_file
+    fi
+}

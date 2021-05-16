@@ -1,0 +1,34 @@
+#!/bin/bash
+set -e
+
+if [ $# -lt 1 ]
+then
+    while read l
+    do
+        echo $l
+    done
+    exit 0
+fi
+
+words=( ${@:1} )
+while read l
+do
+    i=0
+    all_match=1
+    while ! [ $i -gt ${#words[@]} ]
+    do
+        set +e
+        echo $l | grep "${words[$i]}" >/dev/null
+        all_match=$?
+        set -e
+        if [ $all_match -eq 1 ]
+        then
+            break
+        fi
+        i=$( expr $i + 1 )
+    done
+    if [ $all_match -eq 0 ]
+    then
+        echo $l
+    fi
+done

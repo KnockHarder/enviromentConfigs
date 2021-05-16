@@ -107,13 +107,11 @@
 
 " ColorMap_Solarized
   syntax enable
-  if has( 'gui_running' )
-          set background=light
-  else
-          set background=light
+  set background=light
+  if exists("$TMUX")
+      colorscheme solarized
+      let g:solarized_termcolors=  256
   endif
-  colorscheme solarized
-  let g:solarized_termcolors=  256
 
 " Airline
   let g:airline_theme='kolor'
