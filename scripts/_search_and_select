@@ -11,6 +11,9 @@ function _is_number() {
 }
 
 function _search_and_select_name() {
+    OLD_IFS=$IFS
+    IFS='   
+    '
     local argLine=$@
     local isNumber=1
     while [ $isNumber -ne 0 ]
@@ -76,4 +79,5 @@ function _search_and_select_name() {
             fi
         done
     done
+    IFS=$OLD_IFS
 }

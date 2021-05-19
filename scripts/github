@@ -2,6 +2,7 @@
 
 gist="https://gist.github.com/KnockHarder"
 myBookNotes="https://github.com/KnockHarder/myBookNotes"
+profile="https://github.com/KnockHarder"
 
 if [ $# -lt 1 ]
 then

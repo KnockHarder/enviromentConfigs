@@ -18,7 +18,7 @@ do
     while ! [ $i -gt ${#words[@]} ]
     do
         set +e
-        echo $l | grep "${words[$i]}" >/dev/null
+        echo $l | grep -i "${words[$i]}" >/dev/null
         all_match=$?
         set -e
         if [ $all_match -eq 1 ]
