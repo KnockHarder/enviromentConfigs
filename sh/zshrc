@@ -112,7 +112,10 @@ source $ZSH/oh-my-zsh.sh
 alias dirs='dirs -v'
 alias ls='ls --color=always'
 alias pgit='git -P'
-alias fast_package='mvn -T 100 -Denforcer.skip=true -Dcheckstyle.skip=true -Dmaven.compiler.useIncrementalCompilation=false -Dmaven.test.skip=true compile package'
+alias fast_compile='mvn -T 100 -Denforcer.skip=true -Dcheckstyle.skip=true -Dmaven.compiler.useIncrementalCompilation=false -Dmaven.test.skip=true compile'
+alias fast_package='fast_compile package -Dmaven.war.skip=true'
+alias cal='cal -3'
+alias lsdirs='\ls | while read line; do if [ -d $line ]; then echo $line; fi; done'
 
 # environment
 export JAVA_HOME=$(/usr/libexec/java_home)

@@ -11,7 +11,7 @@ _mvn(){
 		-Declipse.workspace= -DarchetypeArtifactId= -DarchetypeGroupId= -DarchetypeVersion \
         -Dversion= -Dpackage= \
 		netbeans-freeform:generate-netbeans-project \
-		tomcat:run tomcat:run-war tomcat:deploy dependency:resolve"
+		tomcat:run tomcat:run-war tomcat:deploy dependency:resolve dependency:get"
     local cur=${COMP_WORDS[$COMP_CWORD]}
 
     if [ $COMP_CWORD -gt 1 ]; then
