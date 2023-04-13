@@ -127,15 +127,14 @@ alias cal='cal -3'
 alias lsdirs='\ls | while read line; do if [ -d $line ]; then echo $line; fi; done'
 
 # environment
-export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH=$PATH:$HOME/bin
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/Cellar/rename/1.601/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
-. $HOME/.zshSpecial
-. $HOME/.bash_completion
+[[ ! -f $HOME/.zshSpecial ]] || source $HOME/.zshSpecial
+[[ ! -f $HOME/.bash_completion ]] || source $HOME/.bash_completion
 
 export PATH=$HOME/bin/override:$PATH
 
